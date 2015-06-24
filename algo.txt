@@ -1,0 +1,24 @@
+                        Maximal Matching:
+
+1. Matching: A set of pairwise non adjacent edges in a graph. 
+2. Maximal Matching: A Matching to which if any more edges added becomes no longer a matching at all.
+3. Maximum Matching: A Maximal Matching with maximum edges.
+4. Perfect Matching: A Matching which covers all the vertices
+
+Note: Every Perfect Matching is Maximum and hence Maximal.
+
+Given a Matching
+5. Alternating Path: is a path in which edges belong alternatively between matching and not matching
+6. Augmenting Path: is an alternating path that starts from and ends in unmatched vertices.
+
+Note: Matching is maximum iff it doesn't have an augmenting path
+
+Algorithm for Maximal Matching:
+
+*** Can there exist more than one augmenting path in a maximal matching ***
+
+Vertex Cover: For all (u,v) belongs to Edge set either u belongs to C or v belongs to C then C is called minimum vertex cover
+
+Minimum vertex cover for general graphs is np-complete.
+
+For bipartite graphs size of maximal matching is equal to the size of the minimum vertex cover
