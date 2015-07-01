@@ -86,4 +86,7 @@ Modular Arithmetic:
 
 20. One can say longest common subsequence distance is also a measure of edit distance considering only two cases i.e insertion and deletion
     and Hamming distance is nothing but obtained only by substitution. 
-    
+
+21. for values of n,r, m<=5000  we can calculate nCr using nCr = (n-1)Cr + (n-1)C(r-1)
+
+

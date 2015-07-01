@@ -1,2 +1,3 @@
 cf266div2c.cpp
 http://discuss.codechef.com/questions/71904/ankparen-editorial
+chineese Remainder Theorem
