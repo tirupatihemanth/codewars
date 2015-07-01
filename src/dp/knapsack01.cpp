@@ -39,33 +39,30 @@ int main(){
         cin>>v[i];
     }
 
-    pair<int,int> **dp = new pair<int,int>*[W+1];
+    int  **dp = new int *[W+1];
 
     for(i=0;i<=W;i++){
-        dp[i] = new pair<int,int>;
+        dp[i] = new int[n+1];
     }
 
     for(i=0;i<=W;i++){
         for(j=0;j<=n;j++){
-            dp[i][j].first=0;
-            dp[i][j].second=0;
+            dp[i][j]=0;
+            dp[i][j]=0;
         }
     }
     
     for(i=1;i<=W;i++){
         for(j=1;j<=n;j++){
-            if(dp[i][j].first+w[j]<=i){
+            if(w[j]<=i){
 
-                if(dp[i-w[j]][j-1].second+v[j]>dp[i][j].second){
-                    dp[i][j].first+=w[j];
-                    dp[i][j].second = dp[i-w[j]][j-1].second+v[j];
-                }
+                dp[i][j] = max(dp[i-w[j]][j-1]+v[j], dp[i][j-1]);
             }
             else{
-                dp[i][j].second = dp[i][j-1].second;
+                dp[i][j] = dp[i][j-1];
             }
         }
     }
-    cout<<dp[W][n].second<<endl;
+    cout<<dp[W][n]<<endl;
     return 0;
 }

@@ -68,7 +68,7 @@ void shrinkPath(Vertex *b, Vertex *v, Vertex *w){
         q.push(u);
         var = new pair<Vertex*, Vertex*>;
         var->first = v;
-        var->second = w;
+var->second = w;
         u->setBridge(var);
         u = findvx(u->getPred());
     }
@@ -167,8 +167,18 @@ vector<Vertex*> constructTree(Vertex *v){
     return augPath;
 }
 
+void correctMatching(vector<Vertex*> &augPath){
+        
+    for(int i=0;i<(int)(augPath.size())-1;i+=2){
+        augPath[i]->setMate(augPath[i+1]);
+        augPath[i+1]->setMate(augPath[i]);
+    }
+
+}
+
 int main(){
-    
+
+/**********************************/    
     cout<<"***** I/O Format *****"<<endl;
     cout<<"\nInput:\n"<<endl;
     cout<<"n m //Number of vertices(n) Number of edges(m)"<<endl;
@@ -176,6 +186,9 @@ int main(){
 
     cout<<"\nOutput:\n"<<endl;
     cout<<"Edges Which form the part of the matching\n"<<endl;
+
+ /**************************************************/
+
     int n,m;
     cin>>n>>m;
 
@@ -222,7 +235,8 @@ int main(){
         if(vx[i].getMate() == NULL){
             augPath = constructTree(vx+i);
             if(augPath.size()!=0){
-                break;
+                correctMatching(augPath);
+                augPath.clear();
             }
         }
     }
@@ -233,10 +247,7 @@ int main(){
     }
     */
 
-    for(i=0;i<(int)(augPath.size())-1;i+=2){
-        augPath[i]->setMate(augPath[i+1]);
-        augPath[i+1]->setMate(augPath[i]);
-    }
+
 
     clock_t after = clock();
 

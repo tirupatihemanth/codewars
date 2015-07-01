@@ -22,3 +22,68 @@ Vertex Cover: For all (u,v) belongs to Edge set either u belongs to C or v belon
 Minimum vertex cover for general graphs is np-complete.
 
 For bipartite graphs size of maximal matching is equal to the size of the minimum vertex cover
+
+Euclid Algorithm:
+
+1. gcd of (a,b) is same as (a-b,b) where a>b
+2. gcd(a,b) = ax+by where x and y are any two integers directly from above theorem
+3. Improvisation is replaceing the larger of the two by the remainder i.e gcd(a,b) = gcd(a%b,b)
+
+Modular Arithmetic:
+1. This technique is used when the computations are larger and so you can do computations modular some number
+2. This number is chosed to be as big as possible(to fit in an integer) and a prime
+3. Prime because if this number is prime then you can find modular inverse for a number and hence modular division is possible
+4. Modular multiplication would be (x*y)%m = ((x%m)*(y%m))%m
+5. Modular Addition would be (x+y)%m = ((x%m)+(y%m))%m
+6. a == b (modm) this means a is congruent to b (modular m) i.e By definion
+    i) a-b is a multiple of m
+    ii) a and b leave the same reminder on m
+
+7. Properties of (==):
+    i) a == b (modm) and c == d (modm) then a*c == b*d (modm) (Only when a,b,c,d are integers)
+    ii) a == b (modm) and c == d (modm) then a+-c == b+-d (modm)
+
+8. Fundamental Property of multiplication in modular arithmetic
+    (a mod n)(b mod n) == ab (mod n)
+    ((a mod n)(b mod n)) modn = ab mod n
+    similarly for addition
+
+9. Application to CS:
+    (a*b)%m = ((a%m)*(b%m))%m
+    (a+b)%m = ((a%m)+(b%m))%m
+    (a/b)%m exists only if m is prime then modular multiplicative inverse exists and modular division is possible
+
+    (a/b)%m = ((a%m)*(b^(m-2)%m))%m
+10. Because By Fermat's Little Theorem a^(m-1) == 1 mod m where m is prime and a is an integer
+    which implies (1/a) == a^(m-2)modm => (1/a) mod m = a^(m-2) mod m
+    (a/b)%m = (a*(1/b))%m = ((a % m) * (b^(m-2)%m))%m
+
+25/06/15
+
+11. Modular multiplicative inverse(x) of a w.r.to m exists only if (a,m) are coprimes
+    i.e ax == 1 (mod m) where x is the modular mulpitlicative inverse of a
+
+    (If time permits revise (Ring, Field)
+
+12. By Bezout's Identity:
+    ax+by = gcd(a,b) i. gcd can always be expressed in this form
+
+15. Now the above identity combined with euclidean forms extended euclidean algorithm which is used to find the Modular multiplicative inversed
+
+16. Say you have to find x in ax == 1 mod m then 
+    ax+by = gcd(a,b) here b = m and as per the existance of modular multiplicative inverse gcd of (a,m) = 1
+    ax+my = 1; Now apply Modulous on both sides
+    (ax+my)%m = 1%m
+    ((ax)%m + (my)%m)%m = 1%m; Here second term on the lhs is equal to zero
+    (ax)%m = 1 %m => ax == 1 mod m i.e x is the modular multiplicative invers of a w.r.to m
+
+    An Important Property of gcd is gcd(a,b,c) = gcd(gcd(a,b),c)
+17. the coefficients x and y are found using Extended euclidean algorithm
+
+19. Levenstein Edit Distance: Insertion(epsilon-->character where epsilon is null string b/w chars) similarly deletion is character-->epsilon and 
+    replacement is x->y all these three operations are of unit cost and minimum number of these operations required to obtained one from the other
+    gives the edit distance. Lesser the edit ditances more related they are. 
+
+20. One can say longest common subsequence distance is also a measure of edit distance considering only two cases i.e insertion and deletion
+    and Hamming distance is nothing but obtained only by substitution. 
+    
