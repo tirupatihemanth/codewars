@@ -1,5 +1,5 @@
 *.jar
+.*.swp
 .fuse*
 a.out
 *.o
-cormen-\ 3rd\ edition.pdf

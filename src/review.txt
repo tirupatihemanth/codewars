@@ -1,3 +1,8 @@
 cf266div2c.cpp
+cf263div2c.cpp
 http://discuss.codechef.com/questions/71904/ankparen-editorial
 chineese Remainder Theorem
+Week of code hacker rank deja and lucky numbers
+Hey how to construct a dfs tree given start times and finish times
+remember that code chefproblem where you were to asked to find the maximum size of a rectangle which has the maximum xor of elements. Do you remember the O(n^2) solution. First you calculate the xor of each element from the origin i.e (0,0) to any element and once you do that to the entire array. Then using the property that xoring identical number is zero so you can make into regions where unwanted regions are included twice and they sum to zero. Hence you can find the xor of any submatrix in O(1) after finishing the above preprocessing. I think you should once go through it:P
+

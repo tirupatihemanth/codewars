@@ -72,3 +72,149 @@ Arrays and Pointer:
     but when you do char *str = "abc";
     now doing str[1] = 'A' is an error as you didn't allocate memory for string abc and it is on readonly segment hence you cannot overwrite. Allocate memory only then you get both read and write access.
 
+IDEA: 26 is a pretty good number try to relate it to the number of alphabets in english alphabet
+
+Unary Predicate is a simple function which takes one operand and returns true or false
+
+std::is_partitioned(InputIterator first, InputIterator last, UnaryPredicate pred)
+
+    A container of elements between first and last are said to be partitioned with respect to pred iff all for all those elements pred returns true must preceed those for which it return false
+
+std::partition(InputIterator first, InputIterator last, UnaryPredicate pred) 
+    
+    This function partitiones satisfying the condition described above
+
+In <cmath> we have std::hypot(double x, double y) which returns the hypotenuse of a right angled triangle with x and y as sides. It effectively computes sqrt(x*x+y*y) hence this is mostly used to calculate distance between two points i.e we can pass hypot(x2-x1, y2-y1) and hoo hoo we got the distance between two points in cartesian plane
+
+***write about lower_bound today***
+
+IDEA: Remember that in case you come across a problem similar to circular linked list i.e after going to end you are supposed to come back to the first i.e actually you are wrapping around i.e you can simplify code by using a % or modulous operator
+
+Trees:
+1. Tree is a connected acyclic graph
+2. An undirected graph in which any two vertices have an unique path between them
+3. A DAG may have many paths between any two vertices and hence is not a tree
+4. For a Directed graphs Tree is defined as if directed graph is looked as an undirected graph then if it forms a tree then that Directed graph can be a tree
+
+Tree is a connected graph with no simple cycles allowed:
+
+Simple cycle: A simple cycle may be defined as a closed walk(A set of vertices with no repetition of edges and have only starting and ending vertex repeated). In Directed graph a simple cycle is just a directed cycle. 
+
+Walk: Edges and vertices can be repeated
+Trail: A walk with all the edges distinct
+Path: A Trail with no vertices repeated(Except possibly of the first and last vertex in a path i.e a closed path)
+
+Eulerian Trail: It's trail visiting all the edges in the graph
+Eulerian Tour or circuit or cycle: In in an undirected graph it's a cycle that uses each edge exactly once i.e a closed Eulerian Trail
+
+Hamiltonian Path: Hamiltonian path is a path in a directed or an undirected graph which visits each and every vertex exactly once.
+Hamiltonian Cycle: It is a Hamiltonian path and a cycle
+
+Determining whether Hamiltonian path or cycle exists is a NP-Complete problem
+A graph which has a Hamiltonian cycle is called a Hamiltonian graph.
+
+
+A graph with a Eulerian Trail is called a semi-Eulerian graph
+A grah with a Eulerian Tour or circuit is called a Eulerian graph
+
+Best way to find the Eulerian Tour is the merging of edge-disjoing cycles as explained by POP
+
+I guess DAG doesn't need a visited flag in dfs because you never get a infi loop over there even in trees you get that problem i.e when they are undirected
+
+I know you are aware of inorder, preorder, postorder traversal of binary trees and you get different ordering of vertices. Below are the ways of ordering vertices based on the Depth First Search...
+
+preordering: The order in which the vertices are visited, i.e start time if you remember PrinceOfPersia
+
+postordering:   The order in which a vertex finish visiting all it's children and grands... i.e finish time if you remember PrinceOfPersia
+
+reversepostordering produces topological sorting of DAG's.
+
+HACK: Use a static variable if you want to keep the value of some variable through out the function calls. This saves the space on stack and who know may be it helps you in "Stack Overflow" if you are doing some large number of function calls. This can be directly used to to get start time and finish where you can just put a static variable inside the dfs(int v) function and can keep on increasing or trivially make it a global variable.
+
+
+Strongly Connected Components:(SCC's) Kosaraju's algorithm
+
+Definition: SCC of a directed graph is a G is a maximal set of vertices C subset of V(vertex set) such that for every pair u,v in C they must be reachable from each other. 
+G and G-Transpose have the same strongly connected component
+
+Component graph is a directed acyclic graph. A component graph is the one which is obtained after replacing each of the strongly connected components of a graph with an equivalent single vertex
+
+Definition: SCC of a directed graph is a G is a maximal set of vertices C subset of V(vertex set) such that for every pair u,v in C they must be reachable from each other. 
+In a SCC or Strongly Connected Graph every vertex is reachable from every other vertex i.e there exists a path between any two vertices
+
+A Transpose graph(a graph with every of it's edge reversed) have exactly same number of Strongly connected Components
+
+In undirected graph every connected component is Strongly connected. Connected is used for undirected graphs whereas the term scc is used for directed graphs i.e if every vertex is reachable from every other vertex then it is called strongly connected components.
+
+Kosaraju's algorithm for finding the SCC's Intuition(learnt from my favourite quora :D): 
+
+In directed graph when you do dfs and order the vertices in reverse post-ordering the one with highest value or that which is finished at last is the one that has reached all the vertices after it in the ordering. Now reverse the edges in the graph and do the dfs in reverse post-ordering obtained in the previous dfs. Now all the vertices reachable now from this and which are not visited before are in a strongly connected component. This way you are finding let's say two vertices u,v in the u has greater finish time in first dfs and u has reached v then in reverse when you start dfs from v in second dfs you go in the reverse path i.e you are trying to find bot forward and reverse ways i.e reachable in both directions. Paritcularly in directed graphs if v is reachable from u then u need not be reachable from v unlike in undirected graphs if that is also possbile then v and u are in the same scc. This is what is explored in kosaraju's algorithm. 
+
+Dijkstra's algorithm - single source shortest path algorithm, works on both directed and undirected graphs with non negative edges.
+
+Cormen: For sparse graphs adjacency list representation is far more better than adjacency matrix representation of graphs
+
+Dense graph |E| --> |V|^2  sparse graph |E| << |V|^2
+
+clique: A clique in graph theory is a subset of vertices of a graph whose induced sub graph is complete. 
+
+maximal clique: A clique is maximal iff it cannot be extended by including one more vertex. i.e a clique doesnot exist exclusively within the vertex set of  larger clique.
+
+maximum clique: A maximum clique of a graph G is a clique such that no other click has larger number of vertices.
+
+Observation: If we represent the discovery of a vertex with a left paranthesis and it's finishing up time i.e when all it's children have been recursively visited by depth first search be represented with right paranthesis then it forms a well formed paranthesis expression
+
+Paranthesis Theorem: u.d represent the starting time when we visit the vertex and u.f represent the visiting the vertex while leaving it i.e after finishing off all it's children recursively by dfs, then consider the interval [u.d, u.f] and [v.d, v.f]
+    1. If they are completely disjoint then neither of them are descendents of other
+    2. If one is completely inside the set of another then it is descendent of that another and viceversa
+
+Note: A directed graph is acyclic if and only if it donot have back edges. Whereas for undirected graph it's enough if we get hit with any already visited edge to say that there is a cycle.
+
+DFS is awesome enough to classify edges as it visits them i.e when we explore an edge (u,v) the colour of v tells us about this edge i.e if v is white then it is tree edge, if it's gray then it's back edge and if it's black then it's a forward or cross edge and this enough to identify a cycle in an directed graph. Def's read clrs.
+
+In DFS of an undirected graph every edge is either a tree edge or a back edge.
+
+Minimum Spanning Tree: 
+
+Kruskal's runs in O(ElogE) remember sorting we do of edges i.e effectively O(ElogV) also prims runs in O(ElogV) but using Fibonacci heaps we can make prim's run in O(E + VlogV). 
+
+Prim's algo is based on this fact: If you take any cut then the minimum weight edge crossing the cut must be part of the minimum spanning tree. Proof can be easily understood by Contradiction..
+
+GK: Splay Tree's are the data structures that searches for the elements that are more frequently accessed than the others and thus provide temporal locality of reference.
+
+Introsort: It's an hybrid algorithm(i.e uses one algo at first and proceeds or changes over to another during course to achieve better performance) that initially starts off as a quicksort but later changes to heapsort if quicksort is trying to O(n^2) worst case i.e if depth exceeds logn then it changes over to heapsort
+
+I guess you forgot to write about fill i.e used to fill the containers similar to memset which sets the bytes with specified values fill fill's al the container elements with the value specified.
+
+Got bored read this:
+1. Dunning-Kruger Effect: It's a cognitive(mental) bias wherein unskilled individuals suffer from illusory superiority, mistakenly assessing their ability to be much higher than is accurate. For Ex.: Remember a guy on quora saying he is confident that he would build a search engine that would compete with Google and says he doesn't know programming. 
+    Conversely this effect also can be understood wherein highly skilled individuals tend to understimate their 
+abilities, erroneously assuming that tasks that are easy for them are also easy for others.
+
+Let's come back..,
+
+In single source shortest path algorithms shortest path is define even if some of the edges are negative but it's not define if there is any negative edge cycle reachable from source.
+
+Dijkstra's algorithm assumes that all the edge weights are non negative. Bellman-Ford algorithm edge's can be negative and if there is a negative edge cycle it will be able to report and hence we can shout loud at the test case that shortest path is not defined in this case.
+
+Matching: A matching M in a graph is a subset of edges E, such that no vertex in v is incident to more than one edge i.e no two edges in M have a common vertex
+
+Maximal Matching: A matching is said to be maximal matching if it is not properly contained in any other matching, which can be said as a matching is said to maximal if we cannot add any edge to the existing set.
+
+Maximum Matching: A matching is said to be maximum if for any other matching M' |M| > |M'|
+
+A problem in which you have a sequence of numbers and you would like to make all those numbers to a single numbers by adding or substracting a number d any number of times. You have to find the minimum number of steps to that. Minimum is obtained when you move all the numbers to the median of the sequence of numbers. You can see this either by drawing the graph for the deviations |a[i]-x| is minimum for i in 1...n is when x is median of the data sequence or you can observe increasing or decreasing patterns of the graph
+
+You are given an array of numbers and you have to find the number from where to start such that sum of all the numbers that are at a distance multiple of some constant k. You can do this O(n) algo instead of traditional O(N^2) algorithm. while reading according to the indicies say from      0...n-1 then maintain an array such that you do the following arr[i%k]+=var; where var is the currently reading element and hence you made all the sums in O(n) and then find the minimum of this array and you get the required minimum sum.
+
+In binary trees at level k numbers of elements start at 2^k to 2^(k+1)-1 say if you are at the element i and if you want to find the elements range k levels down to it is i*2^k to (i+1)*2^k -1
+
+sequence points in c are those where all the side effects before sequence points are finished before the subsequent side effects take place
+
+As there is no sequence point at + operator by default so f() + g() + k(). It is undecidable which function executes first.
+Also say you f(a,b,c) where a,b,c are expressions. There is no sequence between the parameters but it is said that all the parameters are evaluated and let the side effects take their effect before passing to the function. so we cannot predict which expression a, b, c is evaluated first.
+
+so you cannot say which parameter get's evaluated in printf( remember %n and %.*s in quora that you wrote there you cannot predict)
+
+In c/c++ arithmetic shift occurs for signed number data types and logical shift occurs for unsigned number data types
+

@@ -35,6 +35,8 @@ void foo(){
 
 int main(){
     extern int k;
+    set<int> var;
+    
     blah();
     foo();
     return 0;

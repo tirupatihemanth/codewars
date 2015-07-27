@@ -89,4 +89,8 @@ Modular Arithmetic:
 
 21. for values of n,r, m<=5000  we can calculate nCr using nCr = (n-1)Cr + (n-1)C(r-1)
 
+22. Persistant Data structures:
+    Which always preserves the previous version of the data structure after modifications
+    A partially persistent data structure is the one which preserves the previous versions but only the current version is editable
+
 
