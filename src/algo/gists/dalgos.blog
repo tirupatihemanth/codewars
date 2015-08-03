@@ -1,0 +1,18 @@
+Hello All,
+I would like to put in this and the upcoming posts a compilation of all the algorithms and data structures that I am aware of. I will try to make everything as simple as possible. Most of the content I put here is compiled from several online sites and standard text-books.
+
+Let's start with graph Algorithms.
+
+Graphs: 
+Graphs can be easily represented in two ways where each one has it's one pros and cons.
+1. Adjacency matrix:
+    n x n matrix where n is the no. of vertices and m is the no. of edges and each value in the matrix is a bit usually denoting whether there is an edge between two vertices. 
+
+2. Adjacency List:
+    Is an array of lists ( vector<int> arr[n] in c++ ) where n is the no. of vertices when ever there is an edge from u to v we then add the vertex v to the adjacency list of u ( arr[u].push_back(v) ).
+
+Adjacency matrix uses O(n^2) space where Adjacency list uses O(n+m) space. In sparse graphs Adjacency matrix is a big wastage of memory. But to check if there is an edge between u, v in adjacency list is O(1) in case 1 whereas it's o(n) in case 2. Since we have to go through the list of all the elements in the adjancency of vertex u. Adding an edge to our representation in case 1 is O(1) and case 2 too it's O(1) (amortised). 
+
+We choose representation 1 or 2 depending on our use but mostly 2.
+
+
